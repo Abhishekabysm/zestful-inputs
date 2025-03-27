@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import FormField from "./FormField";
 import SubmitButton from "./SubmitButton";
@@ -14,6 +15,7 @@ interface FormData {
 }
 
 const FitnessForm = () => {
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [formData, setFormData] = useState<FormData>({
     height: "",
@@ -56,6 +58,9 @@ const FitnessForm = () => {
         duration: 5000,
       });
       setIsSubmitting(false);
+      
+      // Navigate to fitness details page with the form data
+      navigate('/fitness-details', { state: { userData: formData } });
     }, 1500);
   };
   
