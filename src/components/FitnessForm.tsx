@@ -1,9 +1,10 @@
 
 import React, { useState } from "react";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 import FormField from "./FormField";
 import SubmitButton from "./SubmitButton";
-import { Activity, Heart, Trophy } from "lucide-react";
+import { Activity, Heart, Trophy, Dumbbell, ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface FormData {
   height: string;
@@ -13,6 +14,7 @@ interface FormData {
 }
 
 const FitnessForm = () => {
+  const isMobile = useIsMobile();
   const [formData, setFormData] = useState<FormData>({
     height: "",
     weight: "",
@@ -34,6 +36,17 @@ const FitnessForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Validate form
+    if (!formData.height || !formData.weight || !formData.age) {
+      toast({
+        title: "Error",
+        description: "Please fill all required fields",
+        duration: 3000,
+      });
+      setIsSubmitting(false);
+      return;
+    }
+    
     // Simulate API call
     setTimeout(() => {
       console.log("Form submitted:", formData);
@@ -53,7 +66,7 @@ const FitnessForm = () => {
   ];
   
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md">
+    <form onSubmit={handleSubmit} className="w-full max-w-xl">
       <div className="mb-8 flex items-center space-x-4 animate-fade-in">
         <div className="h-12 w-1 bg-fitness-gradient rounded-full" />
         <h2 className="text-2xl font-bold text-fitness-dark">
@@ -61,7 +74,11 @@ const FitnessForm = () => {
         </h2>
       </div>
       
-      <div className="fitness-card mb-10">
+      <div className="fitness-card mb-10 relative">
+        <div className="absolute top-0 right-0 mt-4 mr-4">
+          <Dumbbell className="h-8 w-8 text-fitness-primary/20 animate-pulse-soft" />
+        </div>
+        
         <FormField
           id="height"
           label="Height"
@@ -111,12 +128,13 @@ const FitnessForm = () => {
         <div className="mt-8 flex justify-center">
           <SubmitButton 
             text={isSubmitting ? "Saving..." : "Save Profile"} 
-            disabled={isSubmitting} 
+            disabled={isSubmitting}
+            className="group"
           />
         </div>
       </div>
       
-      <div className="grid grid-cols-3 gap-4 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
         <div className="fitness-card p-4 flex flex-col items-center animate-slide-up opacity-0" style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}>
           <Activity className="h-6 w-6 text-fitness-primary mb-2 animate-pulse-soft" />
           <span className="text-xs text-center text-fitness-dark/70">Activity Tracking</span>
@@ -131,6 +149,13 @@ const FitnessForm = () => {
           <Trophy className="h-6 w-6 text-fitness-secondary mb-2 animate-pulse-soft" />
           <span className="text-xs text-center text-fitness-dark/70">Goal Setting</span>
         </div>
+      </div>
+      
+      <div className="mt-8 text-center">
+        <a href="#" className="inline-flex items-center text-fitness-primary hover:text-fitness-secondary transition-colors">
+          <span className="mr-1">Learn more about our fitness programs</span>
+          <ArrowRight className="h-4 w-4" />
+        </a>
       </div>
     </form>
   );

@@ -26,7 +26,7 @@ const SubmitButton = ({
     <button
       type={type}
       className={cn(
-        "button-primary group relative overflow-hidden animate-fade-in",
+        "button-primary w-full md:w-auto px-8 py-4 text-base font-semibold rounded-xl transition-all",
         { "opacity-70 cursor-not-allowed": disabled },
         className
       )}
@@ -38,7 +38,7 @@ const SubmitButton = ({
       {text}
       <div 
         className={cn(
-          "absolute inset-0 -translate-x-full bg-shimmer-gradient bg-[length:200%_100%] animate-shimmer",
+          "absolute inset-0 -translate-x-full bg-shimmer-gradient bg-[length:200%_100%] animate-shimmer rounded-xl",
           isHovered ? "opacity-30" : "opacity-0"
         )}
       />
