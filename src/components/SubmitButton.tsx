@@ -26,7 +26,7 @@ const SubmitButton = ({
     <button
       type={type}
       className={cn(
-        "button-primary w-full md:w-auto px-8 py-4 text-base font-semibold rounded-xl transition-all",
+        "button-primary relative overflow-hidden w-full md:w-auto px-8 py-4 text-base font-semibold rounded-xl transition-all",
         { "opacity-70 cursor-not-allowed": disabled },
         className
       )}

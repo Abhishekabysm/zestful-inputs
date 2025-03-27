@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { StrictMode } from "react";
 import Index from "./pages/Index";
 import FitnessDetails from "./pages/FitnessDetails";
+import GetStarted from "./pages/GetStarted";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/fitness-details" element={<FitnessDetails />} />
+              <Route path="/get-started" element={<GetStarted />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

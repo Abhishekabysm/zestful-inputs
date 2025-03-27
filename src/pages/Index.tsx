@@ -1,7 +1,5 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
-import FitnessForm from "@/components/FitnessForm";
 import { 
   Activity, ArrowRight, Award, CheckCircle, ChevronDown, Circle, CircleDashed, 
   Dumbbell, Heart, Medal, Play, ShieldCheck, Star, Target, Users 
@@ -102,17 +100,18 @@ const Index = () => {
                 Join thousands achieving their fitness goals with personalized workout plans, nutrition guidance, and expert support all in one place.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button 
-                  onClick={() => scrollToSection('getstarted')} 
-                  className="button-primary"
-                >
-                  Get Started <ArrowRight className="h-4 w-4 ml-1" />
-                </Button>
+                <Link to="/get-started">
+                  <Button 
+                    className="button-primary"
+                  >
+                    Get Started <ArrowRight className="h-4 w-4 ml-1" />
+                  </Button>
+                </Link>
                 <Button 
                   variant="outline"
-                  className="border-fitness-primary/20 text-fitness-dark hover:bg-fitness-primary/5"
+                  className="border-fitness-primary/20 text-fitness-dark hover:bg-fitness-primary hover:text-white transition-colors"
                 >
-                  <Play className="h-4 w-4 text-fitness-primary mr-2" /> 
+                  <Play className="h-4 w-4 text-fitness-primary mr-2 group-hover:text-white" /> 
                   Watch Demo
                 </Button>
               </div>
@@ -494,7 +493,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA/Form Section */}
+      {/* CTA Section */}
       <section id="getstarted" className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
         <div className="absolute -top-20 -left-20 w-96 h-96 bg-fitness-secondary/5 rounded-full filter blur-3xl animate-float opacity-70" />
         <div className="absolute bottom-10 right-10 w-64 h-64 bg-fitness-accent/5 rounded-full filter blur-2xl animate-float opacity-60" style={{ animationDelay: "1s" }} />
@@ -508,13 +507,16 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-fitness-dark mb-4">
               Start Your Fitness Journey
             </h2>
-            <p className="text-fitness-dark/70 max-w-xl mx-auto">
+            <p className="text-fitness-dark/70 max-w-xl mx-auto mb-8">
               Complete your profile to get personalized workout plans and track your progress towards a healthier you.
             </p>
-          </div>
-          
-          <div className="flex flex-col items-center justify-center w-full">
-            <FitnessForm />
+            <Link to="/get-started">
+              <Button 
+                className="button-primary"
+              >
+                Get Started Now <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
